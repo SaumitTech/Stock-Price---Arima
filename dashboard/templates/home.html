@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hoemepage</title>
+        <link rel="stylesheet" href="{% static "css/stylesheet3.css" %}">
+    </head>
+
+<body>
+
+    <div class = "banner">
+
+            <video autoplay muted loop>
+                <source src =" {% static 'images/bg.mp4' %}" type = "video/mp4" id= "video" autoplay="true" loop="true">
+            </video>
+
+            <div class = "content">
+                <p>Comprehensive Analysis</p>
+                <p>On Financial Markets.</p>
+
+            </div>
+
+            <button  id="myButton" style="vertical-align:middle", "align:center"><span>Continue</span></button>
+    
+
+            
+
+    </div>
+
+    
+
+        {% comment %} href="{% url "index" %}" {% endcomment %}
+
+    
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "login";
+    };
+</script>
+   
+</body>
+    
+</html>

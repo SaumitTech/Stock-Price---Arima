@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if t != 0 %}
+<div class="d-flex hedd">
+  <h3 class="hedd1">{{nfd}} ({{sym}} - {{ex}})</h1>
+  <div class="ml-auto mld">
+    <!-- <input type="text"> -->
+    <form method="POST" action="{% url 'current' %}">
+        {% csrf_token %}
+        
+        {% if sym in na %}
+        <button type="submit" name="remove" class="btn addd btn-danger block" value="{{f_d}}">Remove</button>
+      {% else %}
+      <button type="submit" name="add" class="btn addd btn-primary block" value="{{f_d}}">Add</button>
+      {% endif %}
+</form>
+
+</div>
+</div>
+<div class="row bedd">
+    <div class="col-1"></div>
+  <a class="btn neo col-3 active" id="current" onclick="current()">Current</a>
+  <a class="btn neo col-3" id="future" onclick="future()">future</a>
+  <a class="btn neo col-3" id="sentiments" onclick="sentiments()">sentiments</a>
+</div>
+
+
+<div class="justify-content-center text-center">
+  <div id="currentch" class="chart"></div>
+  <div id="futurech" class="chart"></div>
+  <div id="sentimentsch" class="chart"></div>
+  </div>
+{% else %} 
+<h1 class="nn display-2">Select Any Stock!!!</h1>
+{% endif %}
+
+<input type="text" id="xv" value="{{dat}}">
+<input type="text" id="yv0" value="{{cur}}">
+<input type="text" id="yv" value="{{pre}}">
+<input type="text" id="tweet" value="{{tweet}}">
+
+  
+    
+{% endblock content %}
+    

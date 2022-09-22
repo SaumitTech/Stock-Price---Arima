@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Harvey</title>
+        <link rel="stylesheet" href="{% static "css/stylesheet1.css" %}">
+        {% comment %} href="{% static 'student/assets/plugins/c3-master/c3.min.css' %}" {% endcomment %}
+        
+        
+    </head>
+
+    <body style="background-image: url('{% static "images/Background.jpg"%}')";>
+            
+            <div id="container">
+                <img src = "{% static "images/undraw_male_avatar_323b.svg" %}" class="avatar">
+                    <h1 id="h1">Login</h1>
+                        <form method="POST" action="{% url 'test' %}">
+                        {% csrf_token %}
+                            <p>Username</p>
+                            <input type="text" name="email" placeholder="Enter Email" >
+                            <p>Password</p>
+                            <input type = "password" name="password" placeholder="Enter Password">
+
+                            <button id="button" style="vertical-align:middle", "align:center"><span>Login </span></button><br>
+
+                            <a href="#">Forgot Password?</a><br>
+                            <a href="{% url "register" %}">Don't have an account?</a>
+                        </form>
+                        
+                        </button>
+            
+                    
+                
+            </div>
+            
+        
+    </body>
+    
+</html>

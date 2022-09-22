@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-1"></div>
+  <a class="btn neo col-3" href="{% url 'current' %}">Current</a>
+  <a class="btn neo col-3 active" id="bottom" href="{% url 'future' %}">future</a>
+  <a class="btn neo col-3" href="{% url 'sentiments' %}">sentiments</a>
+</div>
+    <h1>future</h1>
+    <canvas id="myChart" width="400" height="400"></canvas>
+{% endblock content %}

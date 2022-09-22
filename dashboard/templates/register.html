@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Harvey</title>
+        <link rel="stylesheet" href="{% static "css/stylesheet1.css" %}">
+        
+        
+    </head>
+
+    <body style="background-image: url('{% static "images/Background.jpg"%}')";>
+    <!--style="background-image: url('{% static "images/undraw_mobile_payments_vftl.svg"%}')"; -->
+            <form action = "register" method = "post">
+                {% csrf_token %}
+                <div id="container">
+                    <img src = "{% static "images/undraw_mobile_payments_vftl.svg" %}" class="avatar">
+                    
+                        <h1 id="h1">Registration</h1>
+                            
+                                <p>Username</p>
+                                <input  type="text" name="username" placeholder="Enter Username" >
+                                
+                                <p>Email</p>
+                                <input  type="text" name="email" placeholder="Enter Email ID" >
+
+                                <p>Password</p>
+                                <input  type = "password" name="password" placeholder="Enter Password">
+
+                                <button id="button" style="vertical-align:middle", "align:center"><span>Register </span></button><br>
+                        
+                            </button>
+                           <a href="{% url "test" %}">Have an account?</a>
+            
+                </form>  
+                
+            </div>
+            
+        
+    </body>
+    
+</html>

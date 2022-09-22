@@ -1,0 +1,139 @@
+{% load static %}
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://code.highcharts.com/css/stocktools/gui.css">
+<link rel="stylesheet" type="text/css" href="https://code.highcharts.com/css/annotations/popup.css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'auto/auto.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+  <script src="{% static 'high/highstock.js' %}"></script>
+  <script src="{% static 'high/modules/data.js' %}"></script>
+  
+  <script src="{% static 'high/indicators/indicators-all.js' %}"></script>
+  <script src="{% static 'high/modules/drag-panes.js' %}"></script>
+  
+  <script src="{% static 'high/modules/annotations-advanced.js' %}"></script>
+  <script src="{% static 'high/modules/price-indicator.js' %}"></script>
+  <script src="{% static 'high/modules/full-screen.js' %}"></script>
+  
+  <script src="{% static 'high/modules/stock-tools.js' %}"></script>
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-md navbar-light">
+    <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- sidebar -->
+          <div class="col-xl-3 col-lg-4 col-md-4 sidebar fixed-top">
+            <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-3 bottom-border">Stocks!</a>
+            <div class="bottom-border pb-3">
+              <form method="POST" action="{% url 'current' %}">
+                {% csrf_token %}
+                <div class="input-group">
+                  <div class="ui-widget">
+                  <input type="text" id="sbox" class="" name="search" onclick="myFunction()" placeholder="Search...">
+                </div>
+                  <button  type="submit" id="btt">
+                    <div class="search ">
+
+                      <svg width="30" height="30" viewBox="0 0 36 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.9951 0.61261C10.6522 0.61261 7.30933 1.79764 4.76558 4.16795C-0.321924 8.90858 -0.321924 16.6279 4.76558 21.3685C7.30933 23.7388 10.6438 24.9245 14.0126 24.9245C17.3813 24.9245 20.7158 23.7388 23.2596 21.3685C28.3127 16.6279 28.3122 8.90858 23.2247 4.16795C20.6809 1.79764 17.3381 0.61261 13.9951 0.61261ZM13.9783 2.50258C16.7971 2.50258 19.6157 3.49505 21.747 5.51302C26.0438 9.51692 26.0437 16.0195 21.7812 20.0234C17.4843 24.0273 10.5059 24.0273 6.20906 20.0234C1.91218 16.0195 1.91218 9.51692 6.20906 5.51302C8.34031 3.52708 11.1596 2.50258 13.9783 2.50258ZM13.9783 4.42445C11.6065 4.42445 9.37183 5.28905 7.68745 6.89061C6.07183 8.39608 5.17821 10.3501 5.07509 12.4642C5.04071 13.0087 5.48772 13.425 6.07209 13.457H6.10634C6.65634 13.457 7.10321 13.0405 7.13759 12.528C7.20634 10.8944 7.92781 9.3888 9.13093 8.23567C10.4372 7.01848 12.1565 6.34633 13.9783 6.34633C14.5627 6.34633 15.0096 5.92992 15.0096 5.38539C15.0096 4.84086 14.5627 4.42445 13.9783 4.42445ZM8.0312 16.5C7.7577 16.5 7.49539 16.6012 7.302 16.7814C7.1086 16.9616 6.99995 17.2061 6.99995 17.4609C6.99995 17.7158 7.1086 17.9602 7.302 18.1404C7.49539 18.3206 7.7577 18.4219 8.0312 18.4219C8.30471 18.4219 8.56701 18.3206 8.7604 18.1404C8.9538 17.9602 9.06245 17.7158 9.06245 17.4609C9.06245 17.2061 8.9538 16.9616 8.7604 16.7814C8.56701 16.6012 8.30471 16.5 8.0312 16.5ZM24.6561 21.7851C24.394 21.7851 24.1362 21.8814 23.9471 22.0735C23.5346 22.4579 23.5346 23.0663 23.9471 23.4186L24.8065 24.2194C24.6002 24.6038 24.497 25.0203 24.497 25.4687C24.497 26.2375 24.8062 26.9743 25.3906 27.5189L29.7908 31.5547C30.4096 32.1312 31.1997 32.4193 31.9903 32.4193C32.7809 32.4193 33.5717 32.1311 34.1904 31.5866C35.3936 30.4655 35.3936 28.64 34.1904 27.5189L29.7908 23.4186C29.2065 22.8741 28.4157 22.5859 27.5907 22.5859C27.1095 22.5859 26.6625 22.6821 26.25 22.8743L25.3906 22.0735C25.1843 21.8814 24.9182 21.7851 24.6561 21.7851ZM27.5907 24.4759C27.8657 24.4759 28.1406 24.5721 28.3125 24.7643L32.6778 28.832C33.0903 29.2164 33.0903 29.8247 32.6778 30.1771C32.2653 30.5615 31.6125 30.5615 31.2343 30.1771L26.869 26.1413C26.6627 25.9491 26.5595 25.6931 26.5595 25.4368C26.5595 25.1806 26.6627 24.9245 26.869 24.7643C27.0752 24.5721 27.3157 24.4759 27.5907 24.4759Z" fill="black"/>
+                        </svg>
+                    </div>
+                    <div class="cross" id="crs" onclick="myFunction1()">
+                      <svg width="20" height="20" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30.7814 24.9718L27.2315 28.2734C26.5836 28.8833 25.526 28.8833 24.8715 28.2734L16.0001 20.0131L7.13533 28.2734C6.48088 28.8833 5.41658 28.8833 4.76874 28.2734L1.21886 24.9718C0.564415 24.3619 0.564415 23.3764 1.21886 22.7665L10.0836 14.5L1.21886 6.23964C0.571027 5.62365 0.571027 4.63191 1.21886 4.03441L4.76874 0.726565C5.41658 0.116739 6.48088 0.116739 7.13533 0.726565L16.0001 8.99309L24.8715 0.726565C25.526 0.116739 26.5903 0.116739 27.2315 0.726565L30.7814 4.02825C31.4358 4.63807 31.4358 5.62981 30.788 6.23964L21.9166 14.5L30.7814 22.7665C31.4358 23.3764 31.4358 24.3619 30.7814 24.9718Z" fill="black"/>
+                        </svg>
+                    </div>
+                  </button>
+                </div>
+              </form>
+            </div>
+            <ul class="navbar-nav flex-column mt-4">
+              
+              {% for t,n,c,e,l in sl %}
+                
+              
+                
+              <li onmouseover="adddet('{{t}}')" onmouseout="removedet('{{t}}')" class="nav-item">
+              <div class="card listd mb-2">
+                <div class="card-header  d-flex">
+                  <div>{{t}}</div>
+                  <div class="ml-auto">{{e}}</div>
+                </div>
+                <div id="{{t}}"  class="card-body showme justify-content-center">
+                  <h5 class="card-title">{{n}}</h5>
+                  <p class="card-text">Category - {{c}}</p>
+                  <div class="text-center block">
+                    <form method="POST" action="{% url 'current' %}">
+                      {% csrf_token %}
+                    <!-- <input type="text" name="search" class="showme" value="AAPL"> -->
+                  <button type="submit" name="search" class="btn listbt btn-primary block" value="{{l}}">Analyze</button>
+                </form>
+                </div>
+                </div>
+              </div>
+            </li>
+
+            {% endfor %}
+            </ul>
+            
+          </div>
+          <!-- end of sidebar -->
+          
+          <!-- top-nav -->
+          <div class="col-xl-9 col-lg-8 col-md-8 ml-auto fixed-top py-1 top-navbar">
+            <div class="row align-items-center">
+              <div class="col-md-4">
+                <h4 class="text-light text-uppercase mb-0">Dashboard</h4>
+              </div>
+              <div class="col-md-5">
+                
+              </div>
+              <div class="col-md-3">
+                <ul class="navbar-nav">
+                  <li class="nav-item icon-parent"><a href="#" class="nav-link text-white">Profile<i class="fas fa-comments text-muted mr-1 fa-lg"></i></a></li>
+                  <li class="nav-item ml-md-auto"><a href="#" class="nav-link text-white" data-toggle="modal" data-target="#sign-out">Logout<i class="fas fa-sign-out-alt mr-1 fa-lg"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- end of top-nav -->
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- end of navbar -->
+  <div class="col-xl-9 ml-md-auto mt-5">
+    
+    {% block content %}
+      
+    {% endblock content %}
+      
+  </div>
+  <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'auto/jquery-ui.js' %}"></script>
+ 
+  <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    
+  <script type="text/javascript" src="{% static 'js/popper.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+    
+
+</body>
+</html>
